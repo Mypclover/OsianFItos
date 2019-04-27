@@ -1,3 +1,12 @@
+<?php
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +20,12 @@
 </head>
 <form action="insert.php" method="post">
 	<div class="container">
-	
+	<p>
+	<div class="form-group" >
+    	<label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" id="username" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">
+	</div>
+	</p>
     <p>
 	<div class="form-group" >
     	<label for="km">Kilo Meters</label>
