@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marathon </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+    </style>
+</head>
+<form action="insert.php" method="post">
+	<div class="container">
+	
+    <p>
+	<div class="form-group" >
+    	<label for="km">Kilo Meters</label>
+        <input type="number" name="km" class="form-control" id="km">
+	</div>
+    </p>
+    <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Add Records">
+    </div>
+</form>
+</body>
+</html>
