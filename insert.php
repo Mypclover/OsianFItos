@@ -19,7 +19,7 @@ if($link === false){
 }
  
 // Escape user inputs for security
-$username = mysqli_real_escape_string($_REQUEST[$_SESSION["username"]]);
+$username = mysqli_real_escape_string($link,$_REQUEST["username"]);
 $km = mysqli_real_escape_string($link, $_REQUEST['km']);
 
 //$email = mysqli_real_escape_string($link, $_REQUEST['email']);
