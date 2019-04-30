@@ -37,8 +37,21 @@ if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
+
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+if(isset($_GET['edit']))
+{
+	  $username = $_GET['edit'];
+	
+    
 	// Attempt select query execution
-$sql = "SELECT username, SUM(km) as kilo FROM marathon GROUP BY username ORDER BY kilo DESC";
+$sql = "SELECT * from marathon where username= '".$username."'";
 $count = 1;
 if($result = mysqli_query($link, $sql)){
     if(mysqli_num_rows($result) > 0){
@@ -49,16 +62,18 @@ if($result = mysqli_query($link, $sql)){
             echo "<thead>";
             echo "<tr>";
                 echo "<th>S.No</th>";
-                echo "<th>username</th>";
-                echo "<th>KM</th>";
+                echo "<th>Username</th>";
+                echo "<th>Date</th>";
+                echo "<th>Km</th>";
             echo "</tr>";
             echo "</thead>";
 			
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
                 echo "<td>".$count++.  "</td>";
-                echo "<td><a href='history.php?edit=".$row['username']."'>" . $row['username'] . "</a></td>";
-                echo "<td>" . $row['kilo'] . "</td>";
+                echo "<td>" . $row['username'] . "</td>";
+                echo "<td>" . $row['created_at'] . "</td>";
+                echo "<td>" . $row['km'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -71,6 +86,7 @@ if($result = mysqli_query($link, $sql)){
     }
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
 }
 
 
