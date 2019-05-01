@@ -35,7 +35,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php include 'form.php';?>
 <?php include 'rank.php';?>
+    
 <div class="footer">
+    <br>
+    <br>
+    <br>
+    <br>
         © <?php echo date("Y"); ?> Copyright OsianFitos.
     </div>
 </body>
