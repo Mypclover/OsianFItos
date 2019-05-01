@@ -34,14 +34,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <br>
 
 <?php include 'form.php';?>
+<br>    
+<br>    
+<br>    
+<?php include 'toprank.php';?>    
+    
 <?php include 'rank.php';?>
+    
+
     
 <div class="footer">
     <br>
     <br>
     <br>
     <br>
-        © <?php echo date("Y"); ?> Copyright OsianFitos.
+        © <?php echo date("Y"); ?> Copyright <strong>OsianFitos.</strong>
     </div>
 </body>
 </html>

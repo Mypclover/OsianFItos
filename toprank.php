@@ -20,18 +20,27 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
 		th{text-align: center}
-         td{color: black}
+        td{color: white}
+        .naveen1{
+            background-color: green;
+        }
+        .naveen2{
+            background-color: coral;
+        }
+        .naveen3{
+            background-color: dodgerblue;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <br>
-    <br>
-    <br>
-    <h3> Complete List <i class="glyphicon glyphicon-road"></i> </h3>
+<h3> Top Runners <i class="glyphicon glyphicon-road"></i> </h3>
 <?php	
 
 // Include config file
@@ -43,41 +52,42 @@ if($link === false){
 }
 
 	// Attempt select query execution
-$sql = "SELECT username, SUM(km) as kilo FROM marathon GROUP BY username ORDER BY kilo DESC";
-$count = 1;
-if($result = mysqli_query($link, $sql)){
-    if(mysqli_num_rows($result) > 0){
+$top = "SELECT username, SUM(km) as kilo FROM marathon GROUP BY username ORDER BY kilo DESC LIMIT 3";
+$counts = 1;
+$css=1;    
+if($results = mysqli_query($link, $top)){
+    if(mysqli_num_rows($results) > 0){
 		
 		echo"<div class='limiter'>";
 	    echo "</br>";
         echo "</br>";
         echo "</br>";
-        echo "<table class = 'table table-bordered table-striped table-hover'>";
+        echo "<table class = 'table table-bordered'>";
             echo "<thead>";
             echo "<tr>";
-                echo "<th>S.No</th>";
-                echo "<th>username</th>";
-                echo "<th>KM</th>";
+                echo "<th scope='col'><strong>#</strong></th>";
+                echo "<th scope='col'><strong>USERNAME</strong></th>";
+                echo "<th scope='col'><strong>KM</strong></th>";
             echo "</tr>";
             echo "</thead>";
 			
-        while($row = mysqli_fetch_array($result)){
-            echo "<tr>";
-                echo "<td>".$count++.  "</td>";
-                echo "<td><a href='history.php?hist=".$row['username']."'>" . $row['username'] . "</a></td>";
-                echo "<td>" . $row['kilo'] . "</td>";
+        while($rows = mysqli_fetch_array($results)){
+            echo "<tr class='naveen".$css++."'>";
+                echo "<td>".$counts++.  "</td>";
+                echo "<td>" . $rows['username'] . "</td>";
+                echo "<td>" . $rows['kilo'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
 		
 		echo"</div>";
         // Free result set
-        mysqli_free_result($result);
+        mysqli_free_result($results);
     } else{
         echo "</br>";
         echo "</br>";
         echo "</br>";
-            echo "<table class = 'table table-bordered table-striped table-hover'>";
+            echo "<table class = 'table table-bordered '>";
             echo "<thead>";
             echo "<tr>";
                 echo "<th>S.No</th>";
@@ -94,8 +104,7 @@ if($result = mysqli_query($link, $sql)){
 
 
 // close connection
-mysqli_close($link);
-?>
+?>   
 </div>
 </body>
 </html>
