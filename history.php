@@ -34,6 +34,8 @@ session_start();
     <br>
     
  <a href="welcome.php" class="btn btn-warning"> Back To Home</a>   
-    
+    <div class="footer">
+        © <?php echo date("Y"); ?> Copyright OsianFitos.
+    </div>
 </body>
 </html>

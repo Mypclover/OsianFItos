@@ -23,13 +23,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<p>
 	<div class="form-group" >
     	<label for="username">Username:</label>
-        <input type="text" class="form-control" name="username" id="username" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">
+        <input type="text" class="form-control" readonly name="username" id="username" value="<?php echo htmlspecialchars($_SESSION["username"]); ?> ">
 	</div>
 	</p>
     <p>
 	<div class="form-group" >
     	<label for="km">Kilo Meters</label>
-        <input type="number" name="km" class="form-control" id="km">
+        <input type="number" name="km" class="form-control" id="km" min="0" max="100" step="any">
 	</div>
     </p>
     <div class="form-group">

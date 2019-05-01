@@ -44,7 +44,9 @@ if($result = mysqli_query($link, $sql)){
     if(mysqli_num_rows($result) > 0){
 		
 		echo"<div class='limiter'>";
-	
+	    echo "</br>";
+        echo "</br>";
+        echo "</br>";
         echo "<table class = 'table table-bordered table-striped table-hover'>";
             echo "<thead>";
             echo "<tr>";
@@ -57,7 +59,7 @@ if($result = mysqli_query($link, $sql)){
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
                 echo "<td>".$count++.  "</td>";
-                echo "<td><a href='history.php?edit=".$row['username']."'>" . $row['username'] . "</a></td>";
+                echo "<td><a href='history.php?hist=".$row['username']."'>" . $row['username'] . "</a></td>";
                 echo "<td>" . $row['kilo'] . "</td>";
             echo "</tr>";
         }
@@ -67,7 +69,19 @@ if($result = mysqli_query($link, $sql)){
         // Free result set
         mysqli_free_result($result);
     } else{
-        echo "No records matching your query were found.";
+        echo "</br>";
+        echo "</br>";
+        echo "</br>";
+            echo "<table class = 'table table-bordered table-striped table-hover'>";
+            echo "<thead>";
+            echo "<tr>";
+                echo "<th>S.No</th>";
+                echo "<th>username</th>";
+                echo "<th>KM</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo"</table>";
+        echo "<div class='alert alert-primary' role='alert'>No records matching your query were found.</div>";
     }
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);

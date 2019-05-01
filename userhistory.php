@@ -45,9 +45,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-if(isset($_GET['edit']))
+if(isset($_GET['hist']))
 {
-	  $username = $_GET['edit'];
+	  $username = $_GET['hist'];
 	
     
 	// Attempt select query execution
@@ -65,6 +65,7 @@ if($result = mysqli_query($link, $sql)){
                 echo "<th>Username</th>";
                 echo "<th>Date</th>";
                 echo "<th>Km</th>";
+                echo "<th>Edit</th>";
             echo "</tr>";
             echo "</thead>";
 			
@@ -74,6 +75,7 @@ if($result = mysqli_query($link, $sql)){
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['created_at'] . "</td>";
                 echo "<td>" . $row['km'] . "</td>";
+                echo "<td><a href='edit.php?edit=".$row['id']."'<button type='button' class='btn btn-primary'>Update</button></a></td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -82,7 +84,7 @@ if($result = mysqli_query($link, $sql)){
         // Free result set
         mysqli_free_result($result);
     } else{
-        echo "No records matching your query were found.";
+        echo "<div class='alert alert-primary' role='alert'>No records matching your query were found.</div>";
     }
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
